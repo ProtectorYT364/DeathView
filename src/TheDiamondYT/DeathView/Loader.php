@@ -4,7 +4,7 @@ namespace TheDiamondYT\DeathView;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\entity\Effect;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\event\player\PlayerDeathEvent;
@@ -15,7 +15,7 @@ class Loader extends PluginBase implements Listener {
 	/** @var array */
 	private $config;
 	
-	public function onEnable() {
+	public function onEnable(): void {
 		$this->saveDefaultConfig();
 		$this->config = $this->getConfig()->getAll();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -64,7 +64,7 @@ class Loader extends PluginBase implements Listener {
 	 */
 	private function replace($ev, string $text): string {
 		$text = str_replace("{victim}", $ev->getEntity()->getName(), $text);
-		$text = str_replace("{world}", $ev->getEntity()->getLevel()->getName(), $text);
+		$text = str_replace("{world}", $ev->getEntity()->getWorld()->getName(), $text);
 		return $text;
 	}
 }

@@ -3,7 +3,7 @@
 namespace TheDiamondYT\DeathView;
 
 use pocketmine\scheduler\PluginTask;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class SpectateTask extends PluginTask {
 	/** @var Player */
@@ -20,7 +20,7 @@ class SpectateTask extends PluginTask {
 		$this->player->setGamemode(Player::SURVIVAL);
         
 		if($config["teleport-to-spawn"]) {
-			$this->player->teleport($this->owner->getServer()->getDefaultLevel()->getSafeSpawn());
+			$this->player->teleport($this->owner->getServer()->getDefaultWorld()->getSafeSpawn());
 		} 
 		if($config["teleport"]) {
 			$this->player->teleport($config["teleport-to"]["x"], $config["teleport-to"]["y"], $config["teleport-to"]["z"]);
