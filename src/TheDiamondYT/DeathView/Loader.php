@@ -29,10 +29,10 @@ class Loader extends PluginBase implements Listener {
 	 * @param EntityDamageEvent $ev
 	 *
 	 * @priorty         HIGH
-	 * @ignoreCancelled false
+	 * @ignoreCancel false
 	 */
 	public function onEntityDamage(EntityDamageEvent $ev) {
-		if($ev->isCancelled()) {
+		if($ev->isCancel()) {
 			return;
 		}    
 		$entity = $ev->getEntity();
@@ -41,7 +41,7 @@ class Loader extends PluginBase implements Listener {
 			if($entity->getGamemode() === Player::CREATIVE){
 				return;
 			}
-			$ev->setCancelled(true);
+			$ev->setCancel;
 			$entity->setGamemode(Player::SPECTATOR);
 			$this->getServer()->getScheduler()->scheduleDelayedTask(new SpectateTask($this, $entity), $this->config["time"] * 20);  
 	           
